@@ -1,0 +1,32 @@
+footer{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    background-color: #4A3B56;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    
+    .balance{
+        background-color: #342534;
+        margin: 10px 0;
+        border-radius: 5px;
+        width: 15rem;
+        display: flex;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.199) ;
+       
+        p{
+            flex-grow: 4;
+            text-align: left;
+            margin: 8px 0 0 15px;
+            color: #978AA0;
+            
+        }
+        a{
+            padding: 8px 15px;
+            background-color: #8BCD85;
+            color: #4A3B56;
+            border-radius: 0 5px 5px 0;
+        }
+
+    }
+}

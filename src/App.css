@@ -1,0 +1,31 @@
+.App {
+  text-align: center;
+  background-color: #392839 ;
+}
+
+.btn{
+  background-color: #8BCD85;
+  padding: 0.5rem 3rem;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.24);
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,30 @@
+
+header{
+    height: 60px;
+    background-color: #392839;
+    //box-shadow: 2px 2px 4px #000;
+    display: flex;
+    
+    
+    
+    
+    
+    h1{
+        margin: 0px;
+        padding-top: 0.8rem;
+        font-family: 'Lobster', cursive;
+        font-size: 1.5rem;
+        color: #8BCD85;
+        flex-grow: 4;
+        padding-left: 60px;
+        
+    }
+    .profile-icon{
+        height: 30px;
+        width: 30px;
+        padding: 12px 15px;
+        background-image: url('../profile-icon.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
