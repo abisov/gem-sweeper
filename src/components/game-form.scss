@@ -1,15 +1,143 @@
 .formBody{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #978AA0;
     background-color: #4A3B56;
     height: 100%;
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    #betAmount{
-        height: 1.5rem;
+    flex-grow: 4;
+    .bedAmountBody{
+        display: flex;
+        background-color: #5A4A67;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.205);
+        margin-bottom: 1rem;
+        height: 3rem;
+       
+        #betAmount{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #978AA0;
+            border-radius: 5px;
+            border: none;
+            margin: 3px;
+            height: 2.4rem;
+            
+            min-width: 20px;
+            
+            flex-grow: 2;
+            
+            padding-left: 10px;
+            background-color: #342534;
+            
+        }
+        #halfAmount, #doubleAmount, #maxAmount{
+            height: 25px;
+            width: 25px;
+            margin: 10px 15px;
+            flex-shrink: 0;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            
+            
+        }
+        #halfAmount{
+            background-image: url('../assets/half-amount-icon.svg');
+            height: 22px;
+            width: 22px;
+            &:after{
+                content: '';
+                height: 15px;
+                width: 1px;
+                margin-left: 25px;
+                margin-top: 6px;
+                position: absolute;
+                // right: 0;
+                background-color: #342534;
+                
+            }
+        }
+        #doubleAmount{
+            height: 20px;
+            width: 20px;
+            background-image: url('../assets/double-amount-icon.svg');
+            &:after{
+                content: '';
+                height: 15px;
+                width: 1px;
+                margin-left: 25px;
+                margin-top: 6px;
+                position: absolute;
+                // right: 0;
+                background-color: #342534;
+                
+            }
+            
+        }
+        #maxAmount{
+            background-image: url('../assets/max-amount-icon.svg');
+               
+        }
+    }
+    .numberOfThieves{
+        margin-bottom: 1.5rem;
+        display: flex;
+        background-color: #5A4A67;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.205);
+        height: 3rem;
+        .input_container{
+            position: relative;
+            flex-grow: 4;
+            height: 100%;
+            input {
+                cursor: pointer;
+                position: absolute;
+                opacity: 0;
+                right: 0;
+                z-index: 2;
+                height: 100%;
+                width: 100%;
+            }
+            .checkmark {
+                display: flex;
+                position: absolute;
+                height: 3rem;
+                width: 100%;
+                border-radius: 5px;
+                background-color: rgba(238, 238, 238, 0);
+                align-items: center;
+                justify-content: center;
+                
+            }
+           
+            input:checked ~ .checkmark {
+                background-color: #6F5C7D!important;
+            }
+            &:hover input ~ .checkmark {
+                background-color: #6f5c7d7e;
+              }
+        }
+        
     }
     .Start-Cashout{
+        color: #4A3B56;
+        padding: 0.8rem 0;
+
         
-        padding: 0.5rem 0;
-        
+    }
+    .label{
+        text-align: left;
+        font-size: 0.8rem;
+        margin-bottom: 0.2rem;
+    }
+}
+
+@media screen and (min-width: 860px) {
+    .formBody{
+        height: unset;
     }
 }

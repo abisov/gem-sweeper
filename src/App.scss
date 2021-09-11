@@ -1,0 +1,59 @@
+.App {
+  text-align: center;
+  background-color: #392839 ;
+  display: flex;
+  flex-direction: column;
+}
+.content{
+  display: flex;
+  flex-direction: column;
+}
+
+.Game{
+  display: flex;
+  flex-direction: column;
+}
+
+.btn{
+  background-color: #8BCD85;
+  padding: 0.5rem 3rem;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.24);
+}
+
+@media screen and (min-width: 860px) {
+  
+  .content{
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 4;
+    
+    .gameBorder{
+      display: inherit;
+      flex-direction: row;
+      flex-grow: 4;
+      padding: 2.5rem 4rem;
+      justify-content: center;
+      
+      
+      .Game{
+        display: flex;
+        flex-direction: row-reverse;
+        flex-grow: 4;
+        max-width: 1200px;
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+        border-radius: 0px 10px 10px 0px;
+        
+        
+        .gameView{
+          border-radius: 0px 10px 10px 0px;
+        }
+        .formBody{
+          border-radius: 10px 0px 0px 10px;
+        }
+      }
+    }
+  }
+
+}
+

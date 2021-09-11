@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import Header from './components/header';
 import Footer from './components/footer';
 import GameView from './components/game-view';
@@ -9,9 +9,16 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <Footer/>
-      <GameView/>
-      <GameForm/>
+      <div className="content">
+        <Footer/>
+        <div className='gameBorder'>
+          <div className="Game">
+            <GameView/>
+            <GameForm/>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }

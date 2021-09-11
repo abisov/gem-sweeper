@@ -1,4 +1,34 @@
 .gameView{
-    height: 50vh;
+    //min-height: 50vh;
     width: 100%;
+    background-color: #271B27;
+    .mockgame{
+        background-image: url('../assets/mockgame.png');
+        height: 48vh;
+        margin: 1vh 0;
+        width: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+@media screen and (min-width: 860px) {
+    
+    .gameView{
+        //min-height: 50vh;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-self: center;
+        flex-grow: 4;
+        
+        .mockgame{
+            flex-grow: 4;
+            align-self: center;
+            height: 90%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
 }
