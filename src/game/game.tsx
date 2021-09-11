@@ -20,10 +20,7 @@ export class game extends React.Component {
         this.app = new PIXI.Application({backgroundAlpha: 0, resizeTo: mockgame, height: 1600, width: 1600 });
         this.gameCanvas.appendChild(this.app.view);
         
-        //const container = new PIXI.Container();
-        //this.app.stage.addChild(container);
-
-        //get cards textures
+        
         
        
         
@@ -54,7 +51,7 @@ export class game extends React.Component {
         container.x = this.app.screen.width / 2;
         container.y = this.app.screen.height / 2;
 
-        // Center bunny sprite in local container coordinates
+        
         container.pivot.x = container.width / 2;
         container.pivot.y = container.height / 2;
 
