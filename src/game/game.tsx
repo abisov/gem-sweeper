@@ -1,51 +1,62 @@
-import React, { Component } from 'react';
+import React from 'react';
 import * as PIXI from 'pixi.js';
 import * as Cards from './cards'
 
 
 
-export class game extends Component {
-    
-    app: PIXI.Application;
-    gameCanvas: HTMLDivElement;
 
-    constructor(props){
+export class game extends React.Component {
+    
+    app: any;
+    gameCanvas: any;
+
+    constructor(props : any){
         super(props);
     }
 
     componentDidMount() {
-        this.app = new PIXI.Application({backgroundAlpha: 0});
+        var mockgame : HTMLElement = (document.getElementsByClassName('mockgame')[0] as HTMLElement);
+        console.log(mockgame);
+        this.app = new PIXI.Application({backgroundAlpha: 0, resizeTo: mockgame, height: 1600, width: 1600 });
         this.gameCanvas.appendChild(this.app.view);
-        const container = new PIXI.Container();
-        this.app.stage.addChild(container);
+        
+        //const container = new PIXI.Container();
+        //this.app.stage.addChild(container);
 
         //get cards textures
-        // Cards.Back.texture = PIXI.Texture.from(Cards.Back.path);
-        // Cards.Thieve.texture = PIXI.Texture.from(Cards.Thieve.path);
-        // Cards.Emerald.texture = PIXI.Texture.from(Cards.Emerald.path);
-        // Cards.Ruby.texture = PIXI.Texture.from(Cards.Ruby.path);
-        // Cards.Diamond.texture = PIXI.Texture.from(Cards.Diamond.path);
-        //console.log(Cards);
+        
+       
+        
         this.app.start();
 
-        //Generate Field{
+        
+        Cards.Back.texture = PIXI.Texture.from(Cards.Back.path, {resourceOptions: {scale:3}});
+        Cards.Thieve.texture = PIXI.Texture.from(Cards.Thieve.path, {resourceOptions: {scale:3}});
+        Cards.Emerald.texture = PIXI.Texture.from(Cards.Emerald.path, {resourceOptions: {scale:3}});
+        Cards.Ruby.texture = PIXI.Texture.from(Cards.Ruby.path, {resourceOptions: {scale:3}});
+        Cards.Diamond.texture = PIXI.Texture.from(Cards.Diamond.path, {resourceOptions: {scale:3}});
 
-        // for (let i = 0; i < 25; i++) {
-        //     const bunny = new PIXI.Sprite(Cards.Back.texture);
-        //     bunny.anchor.set(0.5);
-        //     bunny.x = (i % 5) * 40;
-        //     bunny.y = Math.floor(i / 5) * 40;
-        //     container.addChild(bunny);
-        // }
+        
+        const container = new PIXI.Container();
 
-        // Move container to the center
+        this.app.stage.addChild(container);
+
+        
+        
+        for (let i = 0; i < 25; i++) {
+            const card = new PIXI.Sprite(Cards.Back.texture);
+            card.anchor.set(0.5);
+            card.x = (i % 5) * 270;
+            card.y = Math.floor(i / 5) * 270;
+            container.addChild(card);
+        }
+
         container.x = this.app.screen.width / 2;
         container.y = this.app.screen.height / 2;
 
         // Center bunny sprite in local container coordinates
         container.pivot.x = container.width / 2;
         container.pivot.y = container.height / 2;
-        
 
       }
       

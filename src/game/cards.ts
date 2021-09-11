@@ -1,4 +1,10 @@
 //export const cards = new Map();
+import Back_Image from './Cards/Back.svg';
+import Thieve_Image from './Cards/Thieve.svg';
+import Emerald_Image from './Cards/Emerald.svg';
+import Ruby_Image from './Cards/Ruby.svg';
+import Diamond_Image from './Cards/Diamond.svg';
+
 
 export enum CARD_TYPES {
     BACK,
@@ -17,7 +23,7 @@ export enum MODE{
     HARD=3
 }
 
-export var currentMode : MODE
+export var currentMode : MODE = MODE.EASY;
 
 export interface ICard{
     readonly id : number,
@@ -37,18 +43,21 @@ export function getRealWorth(gem: IGemCard) : number{
     return (gem.worth * currentMode);
 }
 
+// TODO
+// const => Classes
+
 export const Back : ICard = {
     id : 0,
     name : 'Back',
     type : CARD_TYPES.BACK,
-    path : '../Cards/Back.svg'
+    path : Back_Image
 }
 
 export const Thieve : ICard = {
     id : 1,
     name : 'Thieve',
     type : CARD_TYPES.BOMB,
-    path : '../Cards/Thieve.svg'
+    path : Thieve_Image
 }
 
 export const Emerald : IGemCard = {
@@ -56,7 +65,7 @@ export const Emerald : IGemCard = {
     name : 'Emerald',
     worth : 0.2,
     type : CARD_TYPES.GEM,
-    path : '../Cards/Emerald.svg',
+    path : Emerald_Image,
     gem_type : GEM_TYPES.EMERALD
 }
 
@@ -65,7 +74,7 @@ export const Ruby : IGemCard = {
     name : 'Ruby',
     worth : 0.4,
     type : CARD_TYPES.GEM,
-    path : '../Cards/Ruby.svg',
+    path : Ruby_Image,
     gem_type : GEM_TYPES.RUBY
 }
 
@@ -74,7 +83,7 @@ export const Diamond : IGemCard = {
     name : 'Diamond',
     worth : 0.8,
     type : CARD_TYPES.GEM,
-    path : '../Cards/Diamond.svg',
+    path : Diamond_Image,
     gem_type : GEM_TYPES.DIAMOND
 }
 

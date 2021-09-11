@@ -7,12 +7,21 @@
 .content{
   display: flex;
   flex-direction: column;
+  flex-grow: 4;
+  .gameBorder{
+    display: flex;
+    
+    flex-grow: 4;
+    .Game{
+      display: flex;
+      flex-direction: column;
+      flex-grow: 4;
+    }
+    
+  }
 }
 
-.Game{
-  display: flex;
-  flex-direction: column;
-}
+
 
 .btn{
   background-color: #8BCD85;
