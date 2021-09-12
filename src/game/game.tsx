@@ -19,10 +19,7 @@ export class game extends React.Component {
         this.gameCanvas.appendChild(this.app.view);
         
         
-<<<<<<< HEAD
         this.app.start();
-=======
->>>>>>> 13a2abeaaf61995ce481d5fb5e3b153e1fd8564a
         
        
         
