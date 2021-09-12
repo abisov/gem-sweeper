@@ -15,19 +15,14 @@ export class game extends React.Component {
     }
 
     componentDidMount() {
-        var mockgame : HTMLElement = (document.getElementsByClassName('mockgame')[0] as HTMLElement);
-        console.log(mockgame);
-        this.app = new PIXI.Application({backgroundAlpha: 0, resizeTo: mockgame, height: 1600, width: 1600 });
+        this.app = new PIXI.Application({backgroundAlpha: 0, height: 1600, width: 1600 });
         this.gameCanvas.appendChild(this.app.view);
         
-        //const container = new PIXI.Container();
-        //this.app.stage.addChild(container);
-
-        //get cards textures
+        
+        this.app.start();
         
        
         
-        this.app.start();
 
         
         Cards.Back.texture = PIXI.Texture.from(Cards.Back.path, {resourceOptions: {scale:3}});
