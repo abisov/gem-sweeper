@@ -44,6 +44,8 @@
             
             padding-left: 10px;
             background-color: #342534;
+
+            
             
         }
         #halfAmount, #doubleAmount, #maxAmount{
@@ -54,6 +56,19 @@
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
+           
+
+            &:hover{
+                cursor: pointer;
+                filter: brightness(2);
+                &::before {
+                    filter: brightness(0.5) !important;
+                }
+
+                &::after{
+                    filter: brightness(0.5) !important;
+                }
+            }
             
             
         }
@@ -61,7 +76,7 @@
             background-image: url('../assets/half-amount-icon.svg');
             height: 22px;
             width: 22px;
-            &:after{
+            &::after{
                 content: '';
                 height: 15px;
                 width: 1px;
@@ -70,6 +85,14 @@
                 position: absolute;
                 // right: 0;
                 background-color: #342534;
+                
+            }
+           
+            &::before{
+                content: '$';
+                position: absolute;
+                margin-left: -3.5rem;
+                
                 
             }
         }
@@ -106,6 +129,7 @@
             position: relative;
             flex-grow: 4;
             height: 100%;
+            user-select: none;
             input {
                 cursor: pointer;
                 position: absolute;
@@ -139,7 +163,13 @@
     .Start-Cashout{
         color: #4A3B56;
         padding: 0.8rem 0;
+        user-select: none;
 
+        &:hover{
+            filter: contrast(1.2) hue-rotate(-10deg);
+            cursor: pointer;
+            
+        }
         
     }
     

@@ -1,75 +1,134 @@
 import React from 'react';
 import * as PIXI from 'pixi.js';
 import * as Cards from './cards'
+import { CardSlot } from './card-slot';
+import { board, Board, MODE } from './board-generator';
+
+export var app: PIXI.Application;
+
+// export class GameSettings{
+//     private amount : number;
+//     private mode : number;
+
+//     constructor(amount? : number, mode? : number){
+//         this.amount = amount ?? 0;
+//         this.mode = mode ?? 1;
+//     }
+
+//     ChangeAmount(amount : number) : void{
+//         this.amount = amount;
+        
+//     }
+
+//     ChangeMode(mode : number) : void{
+//         this.mode = mode;
+        
+//     }
+
+//     GetAmount() : number {
+//         return this.amount
+//     }
+
+//     GetMode() : number {
+//         return this.mode
+//     }
+// }
+
+export function NewGame(amount : number, mode : number) : void {
+    
+}
 
 
 
 
 export class game extends React.Component {
     
-    app: any;
-    gameCanvas: any;
+   gameCanvas: any;
+    
 
     constructor(props : any){
         super(props);
     }
 
     componentDidMount() {
-        this.app = new PIXI.Application({backgroundAlpha: 0, height: 1600, width: 1600 });
-        this.gameCanvas.appendChild(this.app.view);
+        app = new PIXI.Application({backgroundAlpha: 0, height: 1600, width: 1600 });
+        this.gameCanvas.appendChild(app.view);
         
         
-        this.app.start();
+        app.start();
         
-        this.LoadTextures();
-
-        this.BoardSetup();
-       
-        
+        this.LoadTextures(this.BoardSetup.bind(this));
 
         
        
+        
+
+        
+       
 
         
         
 
-      }
+    }
       
       
     componentWillUnmount() {
-    this.app.stop();
+    app.stop();
     }
 
-    LoadTextures() : void {
-        Cards.Back.texture = PIXI.Texture.from(Cards.Back.path, {resourceOptions: {scale:3}});
-        Cards.Thieve.texture = PIXI.Texture.from(Cards.Thieve.path, {resourceOptions: {scale:3}});
-        Cards.Emerald.texture = PIXI.Texture.from(Cards.Emerald.path, {resourceOptions: {scale:3}});
-        Cards.Ruby.texture = PIXI.Texture.from(Cards.Ruby.path, {resourceOptions: {scale:3}});
-        Cards.Diamond.texture = PIXI.Texture.from(Cards.Diamond.path, {resourceOptions: {scale:3}});
+    LoadTextures(_callback : () => void) : void {
+        Cards.CardsList[0].texture = PIXI.Texture.from(Cards.CardsList[0].path, {resourceOptions: {scale:3}});
+        Cards.CardsList[1].texture = PIXI.Texture.from(Cards.CardsList[1].path, {resourceOptions: {scale:3}});
+        Cards.CardsList[2].texture = PIXI.Texture.from(Cards.CardsList[2].path, {resourceOptions: {scale:3}});
+        Cards.CardsList[3].texture = PIXI.Texture.from(Cards.CardsList[3].path, {resourceOptions: {scale:3}});
+        Cards.CardsList[4].texture = PIXI.Texture.from(Cards.CardsList[4].path, {resourceOptions: {scale:3}});
+        _callback();
     }
 
     BoardSetup() : void {
         const container = new PIXI.Container();
 
-        this.app.stage.addChild(container);
+        app.stage.addChild(container);
 
         
+
         
         for (let i = 0; i < 25; i++) {
-            const card = new PIXI.Sprite(Cards.Back.texture);
+            const card = new PIXI.Sprite(Cards.CardsList[0].texture);
+            card.interactive = true;
+            card.buttonMode = true;
             
+            board.PopulateBoard();
+
+            let card_slot : CardSlot = board.slots[i];
+            card_slot.sprite = card;
+
+            
+            card.on('pointerdown', this.CardInteraction.bind(card_slot));
             card.anchor.set(0.5);
             card.x = (i % 5) * 270;
             card.y = Math.floor(i / 5) * 270;
             container.addChild(card);
         }
 
-        container.x = this.app.screen.width / 2;
-        container.y = this.app.screen.height / 2;
+        container.x = app.screen.width / 2;
+        container.y = app.screen.height / 2;
 
         
         container.pivot.x = container.width / 2;
         container.pivot.y = container.height / 2;
+    }
+
+    
+    private CardInteraction() : void{
+        let slot = this;
+       
+        // @ts-ignore
+        this.ShowHideCard(false);
+
+        
+        
+        
     }
     
     render() {
@@ -79,5 +138,7 @@ export class game extends React.Component {
         );
     }
 }
+
+
 
 export default game

@@ -1,3 +1,5 @@
+import { Round } from "./utils";
+
 interface IBalance {
     GetValue() : number,
     Deposit(sum : number) : string,
@@ -9,11 +11,15 @@ class Balance implements IBalance {
     private value : number = 0;
 
     constructor(sum : number){
-        this.value = sum;
+        this.value = Round(sum, 2);
     }
 
     GetValue() : number{
         return this.value;
+    }
+
+    Set(sum : number) : number {
+        return Round(this.value = sum, 2);
     }
 
     Deposit(sum : number) : string {
@@ -26,7 +32,11 @@ class Balance implements IBalance {
         return ''
     }
 
+    CheckIfBalance(sum : number) : number{
+        return MainBalance.GetValue() >= sum ? sum : BetBalance.GetValue();
+    }
+
 }
 
-export const MainBalance = new Balance(0);
+export const MainBalance = new Balance(1212.11);
 export const BetBalance = new Balance(0);

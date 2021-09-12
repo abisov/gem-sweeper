@@ -26,6 +26,13 @@ footer{
             background-color: #8BCD85;
             color: #4A3B56;
             border-radius: 0 5px 5px 0;
+            user-select: none;
+
+            &:hover{
+                filter: contrast(1.2) hue-rotate(-10deg);
+                cursor: pointer;
+            }
+        
         }
 
     }
