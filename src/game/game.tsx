@@ -21,17 +21,34 @@ export class game extends React.Component {
         
         this.app.start();
         
+        this.LoadTextures();
+
+        this.BoardSetup();
        
         
 
         
+       
+
+        
+        
+
+      }
+      
+      
+    componentWillUnmount() {
+    this.app.stop();
+    }
+
+    LoadTextures() : void {
         Cards.Back.texture = PIXI.Texture.from(Cards.Back.path, {resourceOptions: {scale:3}});
         Cards.Thieve.texture = PIXI.Texture.from(Cards.Thieve.path, {resourceOptions: {scale:3}});
         Cards.Emerald.texture = PIXI.Texture.from(Cards.Emerald.path, {resourceOptions: {scale:3}});
         Cards.Ruby.texture = PIXI.Texture.from(Cards.Ruby.path, {resourceOptions: {scale:3}});
         Cards.Diamond.texture = PIXI.Texture.from(Cards.Diamond.path, {resourceOptions: {scale:3}});
+    }
 
-        
+    BoardSetup() : void {
         const container = new PIXI.Container();
 
         this.app.stage.addChild(container);
@@ -40,6 +57,7 @@ export class game extends React.Component {
         
         for (let i = 0; i < 25; i++) {
             const card = new PIXI.Sprite(Cards.Back.texture);
+            
             card.anchor.set(0.5);
             card.x = (i % 5) * 270;
             card.y = Math.floor(i / 5) * 270;
@@ -52,21 +70,13 @@ export class game extends React.Component {
         
         container.pivot.x = container.width / 2;
         container.pivot.y = container.height / 2;
-
-      }
-      
-      
-    componentWillUnmount() {
-    this.app.stop();
     }
-
-
     
     render() {
         let component = this;
-    return (
-      <div ref={(thisDiv) => {component.gameCanvas = thisDiv}} />
-    );
+        return (
+        <div ref={(thisDiv) => {component.gameCanvas = thisDiv}} />
+        );
     }
 }
 
