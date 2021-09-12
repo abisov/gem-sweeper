@@ -19,7 +19,10 @@ export class game extends React.Component {
         this.gameCanvas.appendChild(this.app.view);
         
         
+<<<<<<< HEAD
         this.app.start();
+=======
+>>>>>>> 13a2abeaaf61995ce481d5fb5e3b153e1fd8564a
         
        
         
@@ -49,7 +52,7 @@ export class game extends React.Component {
         container.x = this.app.screen.width / 2;
         container.y = this.app.screen.height / 2;
 
-        // Center bunny sprite in local container coordinates
+        
         container.pivot.x = container.width / 2;
         container.pivot.y = container.height / 2;
 
