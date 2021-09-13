@@ -6,33 +6,7 @@ import { board, Board, MODE } from './board-generator';
 
 export var app: PIXI.Application;
 
-// export class GameSettings{
-//     private amount : number;
-//     private mode : number;
 
-//     constructor(amount? : number, mode? : number){
-//         this.amount = amount ?? 0;
-//         this.mode = mode ?? 1;
-//     }
-
-//     ChangeAmount(amount : number) : void{
-//         this.amount = amount;
-        
-//     }
-
-//     ChangeMode(mode : number) : void{
-//         this.mode = mode;
-        
-//     }
-
-//     GetAmount() : number {
-//         return this.amount
-//     }
-
-//     GetMode() : number {
-//         return this.mode
-//     }
-// }
 
 export function NewGame(amount : number, mode : number) : void {
     
