@@ -15,24 +15,33 @@ export enum MODE{
 export interface IBoard{
    slots : CardSlot[],
    mode : Mode,
-   PopulateBoard() : void
+   isActive : boolean,
+   multiplier : number,
+   PopulateBoard() : void,
+   AddMultiplier(card : Cards.ICard) : void,
+   HideBoard() : void
    
 }
 
 
 
 export class Board implements IBoard {
-    slots : CardSlot[] = []
-    mode: Mode
-
+    slots : CardSlot[] = [];
+    mode: Mode;
+    isActive: boolean;
+    multiplier : number 
+    
     constructor(mode : Mode){
         this.mode = mode;
-        
-        
+        this.isActive = false;
+        this.multiplier = 0;
 
     }
 
-    
+    AddMultiplier(card : Cards.ICard) : void{
+        this.multiplier += (card.worth ?? 0) * (this.mode as number);
+        console.log((this.mode as number));
+    }
 
     private GetGem() : Cards.Card{
         var r : number = Math.random();
@@ -49,6 +58,20 @@ export class Board implements IBoard {
         
     }
 
+    HideBoard() : void{
+        for (let i = 0; i < 25; i++) {
+            if(this.slots[i] == undefined){
+
+                this.slots.push(new CardSlot(Cards.CardsList[RandomFromTo(2,4)], true, new Sprite))
+                
+            } 
+            this.slots[i].ShowHideCard(false);
+            this.slots[i].ChangeCard(this.GetGem());
+            
+            
+        }
+    }
+
     PopulateBoard() : void{
         for (let i = 0; i < 25; i++) {
             if(this.slots[i] == undefined){
@@ -56,7 +79,7 @@ export class Board implements IBoard {
                 this.slots.push(new CardSlot(Cards.CardsList[RandomFromTo(2,4)], true, new Sprite))
                 
             } 
-            
+            this.slots[i].ShowHideCard(true);
             this.slots[i].ChangeCard(this.GetGem());
             
         }

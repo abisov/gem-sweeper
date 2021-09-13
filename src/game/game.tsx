@@ -3,14 +3,56 @@ import * as PIXI from 'pixi.js';
 import * as Cards from './cards'
 import { CardSlot } from './card-slot';
 import { board, Board, MODE } from './board-generator';
+import { BetBalance, CurBetBalance, MainBalance} from './balance';
+import game_form, { IState } from '../components/game-form';
 
 export var app: PIXI.Application;
 
 
+class Session{
 
-export function NewGame(amount : number, mode : number) : void {
+    gForm : game_form = new game_form(0);
+
+    constructor(){
+
+    }
+
+    StartSession(gForm : game_form) : void {
+        CurBetBalance.Set(MainBalance.GetValue());
+        MainBalance.Charge(gForm.state.amount);
+        
+        BetBalance.Set(0);
+        gForm.UpdateAmount()
+        board.multiplier = 0;
+        board.mode = gForm.state.mode; 
+        board.PopulateBoard();
+        board.isActive = true;
+        MainBalance.Element.innerHTML =  MainBalance.GetValue() + "$";
+        this.gForm = gForm;
+        this.gForm.ActivateForm(false);
+    }
     
+    KillSession() {
+        //MainBalance.Deposit(CurBetBalance.GetValue());
+        board.HideBoard();
+        CurBetBalance.Set(0);
+        this.gForm.ActivateForm(true);
+        board.isActive = false;
+    }
+    
+    EndSession() {
+        MainBalance.Deposit(CurBetBalance.GetValue() * board.multiplier);
+        CurBetBalance.Set(0);
+        this.gForm.ActivateForm(true);
+        board.isActive = false;
+        MainBalance.Element.innerHTML =  MainBalance.GetValue() + "$"
+        
+    }
 }
+
+export const session : Session = new Session();
+
+
 
 
 
@@ -96,9 +138,10 @@ export class game extends React.Component {
     
     private CardInteraction() : void{
         let slot = this;
-       
-        // @ts-ignore
-        this.ShowHideCard(false);
+        if (board.isActive){   
+            // @ts-ignore
+            this.ShowHideCard(false);
+        }
 
         
         

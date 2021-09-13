@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { BetBalance, MainBalance } from '../game/balance';
-import { NewGame } from '../game/game';
+import { board } from '../game/board-generator';
+import { session } from '../game/game';
 import './game-form.scss';
 
-interface IState {
+export interface IState {
    amount : number;
    mode : number;
   }
@@ -38,7 +39,13 @@ export class game_form extends Component<{} , IState> {
     }
 
     Submit(){
-        console.log(this.state);
+        if(!board.isActive){
+           session.StartSession(this); 
+           
+           return;
+        }
+        
+        session.EndSession();
         
     }
 
@@ -72,12 +79,27 @@ export class game_form extends Component<{} , IState> {
         }))
     }
 
+    UpdateAmount(){
+        this.setState ((pState) => ({
+            amount : BetBalance.GetValue(),
+            mode : pState.mode
+        }))
+    }
+
+    ActivateForm(isActive : boolean) : void{
+        if (isActive){
+            document.getElementById('form_container')?.classList.remove('disabled');
+            return;
+        }
+        document.getElementById('form_container')?.classList.add('disabled');
+        return;
+    }
 
 
     render() {
         return (
             <div className="formBody">
-                <div className="form_container">
+                <div id='form_container' className="form_container">
                     <span className='label' >Bet Amount</span>
                     <div className="bedAmountBody">
                         <input id='betAmount' type="number" min='0.01' max='99999' step='0.01' onChange={this.GetInputAmount} value={this.state.amount}/>

@@ -6,29 +6,42 @@ interface IBalance {
     Charge(sum : number) : string
 }
 
+
+
+
+
 class Balance implements IBalance {
     
     private value : number = 0;
+
+    
 
     constructor(sum : number){
         this.value = Round(sum, 2);
     }
 
+
+    Element : any;
+
+    SetElement(Element : HTMLElement){
+        this.Element = Element;
+    }
+
     GetValue() : number{
-        return this.value;
+        return Round(this.value, 2);
     }
 
     Set(sum : number) : number {
-        return Round(this.value = sum, 2);
+        return this.value = sum;
     }
 
     Deposit(sum : number) : string {
-        this.value = this.value + sum;
+        this.value += sum;
         return ''
     }
 
     Charge(sum : number) : string {
-        if(sum >= this.value ) this.value = this.value - sum;;
+        if(sum <= this.value ) this.value = this.value - sum;;
         return ''
     }
 
@@ -40,3 +53,4 @@ class Balance implements IBalance {
 
 export const MainBalance = new Balance(1212.11);
 export const BetBalance = new Balance(0);
+export const CurBetBalance = new Balance(0);

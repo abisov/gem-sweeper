@@ -4,11 +4,25 @@ import './footer.scss';
 
 
 export class footer extends React.Component {
+
+    balance: any; 
+    
+
+   
+
+    componentDidMount(){
+        this.balance =  (document.getElementById('balance') as HTMLElement);
+        MainBalance.SetElement(this.balance);
+        
+    }
+    
+    
+
     render() {
         return (
             <footer>
                 <div className="balance">
-                    <p>{MainBalance.GetValue()}$</p>
+                    <p id='balance' >{MainBalance.GetValue()}$</p>
                     <a id='deposit'>Deposit</a>
                 </div>
             </footer>
