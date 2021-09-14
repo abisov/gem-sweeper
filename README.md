@@ -1,4 +1,4 @@
-<h1> <img src="./icon.png" height="25">Gem Sweeper </h1>
+<div style="display: flex;"><h1> <img src="./icon.png" height="25">Gem Sweeper </h1></div>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
