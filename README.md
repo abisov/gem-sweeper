@@ -1,4 +1,4 @@
-<div style="display: flex;"><h1> <img style="padding-right: 5px;" src="./icon.png" height="25">Gem Sweeper </h1></div>
+<div style="display: flex;"><h1> <img style="margin-right: 10px;" src="./icon.png" height="25">Gem Sweeper </h1></div>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
