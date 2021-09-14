@@ -1,4 +1,5 @@
 import { Sprite } from "@pixi/sprite";
+import { RotateCard } from "./animate";
 import { board } from "./board-generator";
 import { Card, CardsList, CARD_TYPES } from "./cards";
 import { session } from "./game";
@@ -31,12 +32,14 @@ export class CardSlot implements ICardSlot{
 
         if(!isHidden && this.isHidden){
             this.isHidden = false;
-            this.sprite.texture = this.card.texture;
+            RotateCard(this, this.GetCard().texture)
+            //this.sprite.texture = this.card.texture;
             if(this.card.type == CARD_TYPES.BOMB){
                 session.KillSession();
                 return;
             }
             board.AddMultiplier(this.card);
+            session.ChangeCashout(true);
             return;
         }
 

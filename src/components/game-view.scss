@@ -33,14 +33,11 @@
         flex-grow: 4;
         
         div{
-            
-            
-            
-           
+            display: flex;
             canvas{
                 width: 80%;
-                
-                
+                //flex-grow: 4;
+                flex-shrink: 4;
                 
             }
         }

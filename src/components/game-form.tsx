@@ -35,7 +35,7 @@ export class game_form extends Component<{} , IState> {
             amount : BetBalance.Set(MainBalance.CheckIfBalance(event.target.value)),
             mode : pState.mode
         }))
-       
+        
     }
 
     Submit(){
@@ -102,7 +102,7 @@ export class game_form extends Component<{} , IState> {
                 <div id='form_container' className="form_container">
                     <span className='label' >Bet Amount</span>
                     <div className="bedAmountBody">
-                        <input id='betAmount' type="number" min='0.01' max='99999' step='0.01' onChange={this.GetInputAmount} value={this.state.amount}/>
+                        <input id='betAmount' type="number" min='0' max='99999' value={this.state.amount}  onChange={this.GetInputAmount} />
                         <a onClick={this.HalfAmount} id="halfAmount" className="changeAmount" ></a>
                         <a onClick={this.DoubleAmount} id="doubleAmount" className="changeAmount" ></a>
                         <a onClick={this.MaxAmount} id="maxAmount" className="changeAmount" ></a>
@@ -127,7 +127,7 @@ export class game_form extends Component<{} , IState> {
                 </div>
                 
 
-                <a onClick={this.Submit} className="Start-Cashout btn">Start Game</a>
+                <a onClick={this.Submit} id='start-cashout' className="Start-Cashout btn">Start Game</a>
             </div>
         )
     }

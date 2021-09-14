@@ -19,7 +19,8 @@ export interface IBoard{
    multiplier : number,
    PopulateBoard() : void,
    AddMultiplier(card : Cards.ICard) : void,
-   HideBoard() : void
+   ShowBoard() : void,
+   SetupBoard(multiplier : number, mode : Mode, isActive : boolean) : void
    
 }
 
@@ -58,7 +59,7 @@ export class Board implements IBoard {
         
     }
 
-    HideBoard() : void{
+    ShowBoard() : void{
         for (let i = 0; i < 25; i++) {
             if(this.slots[i] == undefined){
 
@@ -70,6 +71,13 @@ export class Board implements IBoard {
             
             
         }
+    }
+
+    SetupBoard(multiplier : number, mode : Mode, isActive : boolean) : void{
+        this.multiplier = multiplier;
+        this.mode = mode; 
+        this.PopulateBoard();
+        this.isActive = isActive;
     }
 
     PopulateBoard() : void{

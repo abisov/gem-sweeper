@@ -2,55 +2,17 @@ import React from 'react';
 import * as PIXI from 'pixi.js';
 import * as Cards from './cards'
 import { CardSlot } from './card-slot';
-import { board, Board, MODE } from './board-generator';
+import { board} from './board-generator';
 import { BetBalance, CurBetBalance, MainBalance} from './balance';
-import game_form, { IState } from '../components/game-form';
+import game_form from '../components/game-form';
+import { Round } from './utils';
 
 export var app: PIXI.Application;
 
 
-class Session{
 
-    gForm : game_form = new game_form(0);
 
-    constructor(){
 
-    }
-
-    StartSession(gForm : game_form) : void {
-        CurBetBalance.Set(MainBalance.GetValue());
-        MainBalance.Charge(gForm.state.amount);
-        
-        BetBalance.Set(0);
-        gForm.UpdateAmount()
-        board.multiplier = 0;
-        board.mode = gForm.state.mode; 
-        board.PopulateBoard();
-        board.isActive = true;
-        MainBalance.Element.innerHTML =  MainBalance.GetValue() + "$";
-        this.gForm = gForm;
-        this.gForm.ActivateForm(false);
-    }
-    
-    KillSession() {
-        //MainBalance.Deposit(CurBetBalance.GetValue());
-        board.HideBoard();
-        CurBetBalance.Set(0);
-        this.gForm.ActivateForm(true);
-        board.isActive = false;
-    }
-    
-    EndSession() {
-        MainBalance.Deposit(CurBetBalance.GetValue() * board.multiplier);
-        CurBetBalance.Set(0);
-        this.gForm.ActivateForm(true);
-        board.isActive = false;
-        MainBalance.Element.innerHTML =  MainBalance.GetValue() + "$"
-        
-    }
-}
-
-export const session : Session = new Session();
 
 
 
@@ -75,15 +37,7 @@ export class game extends React.Component {
         
         this.LoadTextures(this.BoardSetup.bind(this));
 
-        
-       
-        
 
-        
-       
-
-        
-        
 
     }
       
@@ -137,7 +91,9 @@ export class game extends React.Component {
 
     
     private CardInteraction() : void{
+        if(!board.isActive) return;
         let slot = this;
+        
         if (board.isActive){   
             // @ts-ignore
             this.ShowHideCard(false);
@@ -157,5 +113,64 @@ export class game extends React.Component {
 }
 
 
+class Session{
+
+    gForm : game_form = new game_form(0);
+    cashoutBtn : any;
+
+    constructor(){
+
+    }
+
+    StartSession(gForm : game_form) : void {
+        
+        CurBetBalance.Set(BetBalance.GetValue());
+        MainBalance.Charge(BetBalance.GetValue());
+        BetBalance.Set(0);
+        gForm.UpdateAmount()
+
+        board.SetupBoard(0, gForm.state.mode, true);
+
+        MainBalance.Element.innerHTML =  MainBalance.GetValue() + "$";
+        this.gForm = gForm;
+        this.gForm.ActivateForm(false);
+        this.cashoutBtn = document.getElementById('start-cashout') ?? 0;
+        this.ChangeCashout(true);
+    }
+    
+    KillSession() {
+        //MainBalance.Deposit(CurBetBalance.GetValue());
+        board.ShowBoard();
+        CurBetBalance.Set(0);
+        this.gForm.ActivateForm(true);
+        board.isActive = false;
+        this.ChangeCashout(false);
+    }
+    
+    EndSession() {
+        MainBalance.Deposit(CurBetBalance.GetValue() * board.multiplier);
+        CurBetBalance.Set(0);
+        this.gForm.ActivateForm(true);
+        board.isActive = false;
+        MainBalance.Element.innerHTML =  MainBalance.GetValue() + "$"
+        this.ChangeCashout(false);
+        board.ShowBoard();
+        
+    }
+
+    ChangeCashout(isActive : boolean){
+        if(isActive){
+            this.cashoutBtn.innerHTML = 'Cashout ' + '<span>' + Round(CurBetBalance.GetValue() * board.multiplier, 2)  + '$</span>';
+            return;
+        }
+    
+        this.cashoutBtn.innerHTML = 'Start Game';
+        return;
+
+        
+    }
+}
+
+export const session : Session = new Session();
 
 export default game

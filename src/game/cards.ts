@@ -4,7 +4,7 @@ import Thieve_Image from './Cards/Thieve.svg';
 import Emerald_Image from './Cards/Emerald.svg';
 import Ruby_Image from './Cards/Ruby.svg';
 import Diamond_Image from './Cards/Diamond.svg';
-import { board, MODE } from './board-generator';
+import { board } from './board-generator';
 
 
 export enum CARD_TYPES {
