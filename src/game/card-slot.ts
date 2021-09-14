@@ -1,5 +1,5 @@
 import { Sprite } from "@pixi/sprite";
-import { RotateCard } from "./animate";
+import { RotateCard, ShowMultiplierPopup } from "./animate";
 import { board } from "./board-generator";
 import { Card, CardsList, CARD_TYPES } from "./cards";
 import { session } from "./game";
@@ -38,7 +38,11 @@ export class CardSlot implements ICardSlot{
                 session.KillSession();
                 return;
             }
-            board.AddMultiplier(this.card);
+            if(this.card.type == CARD_TYPES.GEM && board.isActive){
+                board.AddMultiplier(this.card);
+                ShowMultiplierPopup(this);
+            }
+            
             
             return;
         }

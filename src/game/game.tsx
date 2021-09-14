@@ -29,7 +29,7 @@ export class game extends React.Component {
     }
 
     componentDidMount() {
-        app = new PIXI.Application({backgroundAlpha: 0, height: 1600, width: 1600 });
+        app = new PIXI.Application({backgroundAlpha: 0, height: 2000, width: 2000 });
         this.gameCanvas.appendChild(app.view);
         
         
@@ -95,6 +95,7 @@ export class game extends React.Component {
         let slot = this;
         
         if (board.isActive){   
+            
             // @ts-ignore
             this.ShowHideCard(false);
         }
@@ -125,6 +126,7 @@ class Session{
     StartSession(gForm : game_form) : void {
         
         MainBalance.Charge(BetBalance.GetValue());
+        
         CurBetBalance.Set(BetBalance.GetValue());
         BetBalance.Set(0);
         gForm.UpdateAmount()
@@ -140,11 +142,11 @@ class Session{
     
     KillSession() {
         //MainBalance.Deposit(CurBetBalance.GetValue());
-        board.ShowBoard();
         CurBetBalance.Set(0);
         this.gForm.ActivateForm(true);
         board.isActive = false;
         this.ChangeCashout(false);
+        board.ShowBoard();
     }
     
     EndSession() {

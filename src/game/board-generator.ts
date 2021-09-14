@@ -2,6 +2,7 @@ import { Sprite } from '@pixi/sprite';
 import { Mode } from 'fs'
 import { CardSlot } from './card-slot';
 import * as Cards from './cards'
+import { session } from './game';
 import { RandomFromTo, UniqueRandom } from './utils';
 
 export enum MODE{
@@ -41,6 +42,7 @@ export class Board implements IBoard {
 
     AddMultiplier(card : Cards.ICard) : void{
         this.multiplier += (card.worth ?? 0) * (this.mode as number);
+        session.ChangeCashout(true);
         console.log((this.mode as number));
     }
 
@@ -106,4 +108,6 @@ export class Board implements IBoard {
 }
 
 export const board: IBoard = new Board(MODE.EASY);
+
+
 

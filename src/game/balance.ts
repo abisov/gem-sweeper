@@ -32,7 +32,7 @@ class Balance implements IBalance {
     }
 
     Set(sum : number) : number {
-        return this.value = sum;
+        return Round(this.value = sum, 2);
     }
 
     Deposit(sum : number) : string {
@@ -41,7 +41,7 @@ class Balance implements IBalance {
     }
 
     Charge(sum : number) : string {
-        if(sum <= this.value ) this.value = this.value - sum;;
+        if(sum <= Round(this.value, 2) ) this.value = this.value - sum;;
         return ''
     }
 
