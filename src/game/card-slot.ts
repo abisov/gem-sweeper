@@ -39,7 +39,7 @@ export class CardSlot implements ICardSlot{
                 return;
             }
             board.AddMultiplier(this.card);
-            session.ChangeCashout(true);
+            
             return;
         }
 
