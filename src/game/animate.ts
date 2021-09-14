@@ -26,8 +26,11 @@ export function RotateCard(slot : CardSlot, texture : PIXI.Texture) : void{
     })
 }
 
-export function ShowMultiplierPopup(){
+export function ShowMultiplierPopup(slot : CardSlot, texture : PIXI.Texture){
     const ticker = new PIXI.Ticker();
     ticker.start();
-    ticker.add(() => {});
+    ticker.add(() => {
+        
+
+    });
 }

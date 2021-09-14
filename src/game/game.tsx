@@ -124,8 +124,8 @@ class Session{
 
     StartSession(gForm : game_form) : void {
         
-        CurBetBalance.Set(BetBalance.GetValue());
         MainBalance.Charge(BetBalance.GetValue());
+        CurBetBalance.Set(BetBalance.GetValue());
         BetBalance.Set(0);
         gForm.UpdateAmount()
 
