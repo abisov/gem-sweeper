@@ -1,4 +1,4 @@
-![alt text](./icon.png)# Gem Sweeper
+![alt text](./icon.png = 77x54)# Gem Sweeper
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
